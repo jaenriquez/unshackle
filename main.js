@@ -206,7 +206,7 @@ function apiify (promise) {
         body = () => {
           console.log(`$ ${command}`)
           return new Promise(resolve => {
-            const execution = cp.exec(command, (error, stdout) => {
+            const execution = cp.exec(command, {maxBuffer: 1024 * 500} ,(error, stdout) => {
               if (error) {
                 console.error(error.stack)
                 process.exit(1)
